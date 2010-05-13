@@ -17,3 +17,10 @@ USAGE
 
     $ f pattern | vim -
 
+MAPPING
+=======
+
+- `<ENTER>` - open file
+- `D`       - delete file
+
+
