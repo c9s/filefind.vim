@@ -1,7 +1,7 @@
 
 fun! s:Detect()
   let line = getline(1)
-  if line =~ '^find '
+  if line =~ '^find'
     setfiletype filefind
   endif
 endf
