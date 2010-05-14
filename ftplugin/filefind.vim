@@ -27,6 +27,10 @@ fun! s:Help()
   return ""
 endf
 
+fun! s:GetCommand()
+  return getline(1)
+endf
+
 fun! s:Grep(file)
   tabnew
   cal inputsave()
