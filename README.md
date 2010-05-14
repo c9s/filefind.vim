@@ -22,5 +22,7 @@ MAPPING
 
 - `<ENTER>` - open file
 - `D`       - delete file
+- `G`       - grep file
+- `?`       - show help message
 
 
