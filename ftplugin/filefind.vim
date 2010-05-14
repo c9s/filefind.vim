@@ -32,5 +32,5 @@ fun! s:FileFindInit()
   nnoremap <buffer>  <Enter>   <C-w>gf
   nnoremap <buffer>  D         :cal delete(getline('.'))<CR>dd
 endf
+cal s:FileFindInit()
 
-au filetype FileFind :cal s:FileFindInit()
