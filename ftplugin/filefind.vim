@@ -77,6 +77,8 @@ fun! s:FileFindInit()
   hi link Command Function
   hi CursorLine ctermbg=yellow ctermfg=black
   nnoremap <buffer>  <Enter>   <C-w>gf
+  nnoremap <buffer>  <C-k>     <C-w>f
+  nnoremap <buffer>  <C-l>     <C-w>gf
   nnoremap <buffer>  D                  :cal delete(getline('.'))<CR>dd
   nnoremap <buffer>  <C-x>G             :cal <SID>GrepFile(getline('.'))<CR>
   nnoremap <buffer>  <C-x><C-G>         :cal <SID>GrepFileList()<CR>
