@@ -58,6 +58,17 @@ fun! s:GrepFile(file)
   6copen
 endf
 
+fun! s:FilterFileList()
+  if ! exists('b:filelist')
+    let b:filelist = getline('1','$')
+  endif
+  let pattern = input('Pattern:','')
+  let newlist = filter(copy(b:filelist),'v:val =~ "'.pattern.'"')
+  silent 0,$delete
+  cal setline(1,newlist)
+  echo "Press 'u' for undo filtered result."
+endf
+
 fun! s:FileFindInit()
   setlocal buftype=nofile bufhidden=wipe
   setlocal cursorline nonu
@@ -66,10 +77,10 @@ fun! s:FileFindInit()
   hi link Command Function
   hi CursorLine ctermbg=yellow ctermfg=black
   nnoremap <buffer>  <Enter>   <C-w>gf
-  nnoremap <buffer>  D         :cal delete(getline('.'))<CR>dd
-  nnoremap <buffer>  G         :cal <SID>GrepFile(getline('.'))<CR>
-  nnoremap <buffer>  <C-G>     :cal <SID>GrepFileList()<CR>
+  nnoremap <buffer>  D                  :cal delete(getline('.'))<CR>dd
+  nnoremap <buffer>  <C-x>G             :cal <SID>GrepFile(getline('.'))<CR>
+  nnoremap <buffer>  <C-x><C-G>         :cal <SID>GrepFileList()<CR>
+  nnoremap <buffer>  <C-x><C-F>         :cal <SID>FilterFileList()<CR>
   nnoremap <script><buffer>  ?  :cal <SID>Help()<CR>
 endf
 cal s:FileFindInit()
-
