@@ -69,6 +69,15 @@ fun! s:FilterFileList()
   echo "Press 'u' for undo filtered result."
 endf
 
+fun! s:FileOpen()
+  let file = getline('.')
+  if filereadable( file ) 
+    if has('macos')
+      cal system( 'open ' . file . ' & ' )
+    endif
+  endif
+endf
+
 fun! s:FileFindInit()
   setlocal buftype=nofile bufhidden=wipe
   setlocal cursorline nonu
@@ -79,6 +88,7 @@ fun! s:FileFindInit()
   nnoremap <buffer>  <Enter>   <C-w>gf
   nnoremap <buffer>  <C-k>     <C-w>f
   nnoremap <buffer>  <C-l>     <C-w>gf
+  nnoremap <buffer>  O                  :cal <SID>FileOpen()<CR>
   nnoremap <buffer>  D                  :cal delete(getline('.'))<CR>dd
   nnoremap <buffer>  <C-x>G             :cal <SID>GrepFile(getline('.'))<CR>
   nnoremap <buffer>  <C-x><C-G>         :cal <SID>GrepFileList()<CR>
